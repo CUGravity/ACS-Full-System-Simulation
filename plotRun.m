@@ -6,11 +6,11 @@ plotStates(stateArr,toPlot);
 plotCmds(actuationCmds,toPlot);
 
 if strcmp(toPlot,'all') || strcmp(toPlot,'Orbits')
-    plotOrbit(stateArr);
+%     plotOrbit(stateArr);
 end
 
 if strcmp(toPlot,'all') || strcmp(toPlot,'Animate')
-    animate;
+%     animate;
 end
 
 end
