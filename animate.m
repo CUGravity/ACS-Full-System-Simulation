@@ -1,4 +1,5 @@
 % Animate the bouncing ball (the "good" way)
+%
 
 figure;
 
