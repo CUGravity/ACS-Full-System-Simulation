@@ -3,10 +3,10 @@ function errorPos = findADCSfault(ADCSs)
     % back to the PowerBoard. The POwerBoard determines if an exit from the
     % safe mode is warranted.
     
-   % Niccolo Porcari 2017
+    % Niccolo Porcari 2017
    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-    errorPos = [];
+    errorPos = zeros(1,7);
     %% ADCSs Structure for reference
     % 1  ADCS Functional Status            ADCS_Fs
     % 2  ADCS Sectional Status             ADCS_Ss
@@ -21,27 +21,27 @@ function errorPos = findADCSfault(ADCSs)
     
     if ADCSs(2) == false
         if ADCSs(4) == false
-            errorPos = [errorPos 4];
+            errorPos(1) = 1;
         end
         if ADCSs(5) == false
-            errorPos = [errorPos 5];
+            errorPos(2) = 1;
         end
         if ADCSs(6) == false
-            errorPos = [errorPos 6];
+            errorPos(3) = 1;
         end
         if ADCSs(7) == false
-            errorPos = [errorPos 7];
+            errorPos(4) = 1;
         end
     end
     if ADCSs(3) == false
         if ADCSs(8) == false
-            errorPos = [errorPos 8];
+            errorPos(5) = 1;
         end
         if ADCSs(9) == false
-            errorPos = [errorPos 9];
+            errorPos(6) = 1;
         end
         if ADCSs(10) == false
-            errorPos = [errorPos 10];
+            errorPos(7) = 1;
         end
     end
 end

@@ -1,4 +1,4 @@
-
+% bdclose('all')
 %
 close all;
 clear;
