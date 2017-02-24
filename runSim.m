@@ -1,5 +1,5 @@
 % refresh enviroment
-bdclose('all')
+% bdclose('all');
 close all;
 clear;
 clc;
