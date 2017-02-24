@@ -6,6 +6,7 @@ clc;
 
 tic;
 %
+addpath('SecondaryScripts');
 initSimulink;
 initACS;
 
