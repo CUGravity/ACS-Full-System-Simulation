@@ -4,7 +4,6 @@
 %% Constants
 mewE = 3.986004418e14; % m^3/s/s
 
-
 %% Controller
 kp = 0.01;
 kd = 0.01;
@@ -16,11 +15,11 @@ teth_lo = 30;
 %% Connected full system
 zl = 3*0.01; %2U
 xyl = 1*0.01; %2U
-m = 4;
-I_full=[m*(zl^2+xyl^2)/12 0 0 ; ...
+m = 4; % in kg
+I_undeployed=[m*(zl^2+xyl^2)/12 0 0 ; ...
         0 m*(zl^2+xyl^2)/12 0 ; ...
         0 0 m*(2*xyl^2)/12 ] + 1e-6*(rand(3)-0.5);
-I_full_inv = inv(I_full);
+I_undeployed = inv(I_undeployed);
 
 %% Connected full system - SOLAR PANEL DEPLOYED
 zl = 3*0.01; %2U
@@ -80,9 +79,11 @@ sat3.Ax = 0.005;
 sat3.Ay = 0.005;
 sat3.Az = 0.01;
 
-%%
-
-
+%% PLACEHOLDERS
+counter = 0;
+km = kp;
+A = sat1.Ax;
+n = sat1.nx;
 
 
 
