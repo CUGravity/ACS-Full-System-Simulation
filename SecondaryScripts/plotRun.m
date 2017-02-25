@@ -47,20 +47,20 @@ if strcmp(toPlot,'Cubes') || strcmp(toPlot,'all') || strcmp(toPlot,'States')
     
 end
 
-if strcmp(toPlot,'Panels') || strcmp(toPlot,'all') || strcmp(toPlot,'States')
-    p1 = stateArr.SolarPanelState.panel1;
-    p2 = stateArr.SolarPanelState.panel2;
-    
-    p = [ p1 p2 ];
-    
-    for i = 1:length(p)
-        figure; hold on; box on;
-        plot(p(i));
-        legend('Theta','Theta_dot','Phi','Phi_dot');
-        title(['panel ',num2str(i),': Orientation over time']);
-    end
-    
-end
+% if strcmp(toPlot,'Panels') || strcmp(toPlot,'all') || strcmp(toPlot,'States')
+%     p1 = stateArr.SolarPanelState.panel1;
+%     p2 = stateArr.SolarPanelState.panel2;
+%     
+%     p = [ p1 p2 ];
+%     
+%     for i = 1:length(p)
+%         figure; hold on; box on;
+%         plot(p(i));
+%         legend('Theta','Theta_dot','Phi','Phi_dot');
+%         title(['panel ',num2str(i),': Orientation over time']);
+%     end
+%     
+% end
 
 end
 

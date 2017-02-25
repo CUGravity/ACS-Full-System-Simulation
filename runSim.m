@@ -15,7 +15,7 @@ initSensors;
 
 % Which configuration to run
 configFirst;
-t_end = OpTimes(end)+10;
+t_end = OpTimes(end)+100;
 % Run simulation
 sim('Main');
 

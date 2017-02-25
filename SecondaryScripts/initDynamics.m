@@ -2,8 +2,8 @@
 
 %% Dynamics by hand
 
-%% Simple Simscape Model
-% Masses
+%% Single Link Simscape Model
+% Cubesats
 centerDim = [ 10 10 20 ]/100;
 centerMass = 4*(2/3);
 side1Dim = [ 10 10 5 ]/100;
