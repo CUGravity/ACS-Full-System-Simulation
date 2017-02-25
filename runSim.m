@@ -12,6 +12,7 @@ initSimulink;
 initACS;
 initDynamics;
 initSensors;
+initKalmanFilter;
 
 % Which configuration to run
 configFirst;
