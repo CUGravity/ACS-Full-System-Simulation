@@ -1,8 +1,7 @@
-
 %
 
 % Speed in Hz
-freq = 80;
+freq = 800;
 
 st = 1/freq;
 

@@ -3,7 +3,7 @@ teth_length = 1; % meters
 % state 1 is the main central satellite
 orbitalState_i = [6.7e6 0 0 , 0 7.6e3 0];
 % in meters, m/s, n/a, rad/s
-state1_i = [ 0 0 0 , 0 0 0 , 0 0 0 1 , .1 0 0 ]';
+state1_i = [ 0 0 0 , 0 0 0 , 0 0 0 1 , 1 0 0 ]';
 state2_i = [ 0 0 1 , 0 0 0 , 0 0 0 1 , 0 0 0 ]';
 state3_i = [ 0 0 -1 , 0 0 0 , 0 0 0 1 , 0 0 0 ]';
 
