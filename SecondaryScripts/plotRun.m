@@ -45,9 +45,10 @@ end
 
 function plotCmds(actuationCmds,toPlot)
 
-c1 = actuationCmds.Cube1_PWM_cmds;
-c2 = actuationCmds.Cube2_PWM_cmds;
-c3 = actuationCmds.Cube3_PWM_cmds;
+centerPWM = actuationCmds.CenterCube_PWM_cmds;
+motorReel = actuationCmds.MotorReelRates;
+burnCmds = actuationCmds.BurnCmd;
+acsSafe = actuationCmds.ACSSafeMode;
 
 end
 
