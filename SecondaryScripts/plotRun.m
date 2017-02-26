@@ -60,6 +60,15 @@ plot(burnCmds);
 legend('Wire 1','Wire 2','Wire 3','Wire 4');
 title('Burn Wire Commands');
 
+figure; hold on; box on;
+plot(motorReel);
+legend('Reel 1','Reel 2');
+title('Motor Reel Commands');
+
+figure; hold on; box on;
+plot(acsSafe);
+title('ACS Safe Mode');
+
 end
 
 function plotOrbit(stateArr)
