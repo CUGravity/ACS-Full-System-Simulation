@@ -12,7 +12,7 @@ side2Dim = [ 10 10 5 ]/100;
 side2Mass = 4*(0.5/3);
 
 % Tether
-teth_radius = .005;     
+teth_radius = .005;
 teth_length = 2;
 teth_density = 1;
 spring1L = 0;

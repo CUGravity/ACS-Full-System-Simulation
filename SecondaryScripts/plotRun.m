@@ -6,7 +6,7 @@ plotStates(stateArr,toPlot);
 plotCmds(actuationCmds,toPlot);
 
 if strcmp(toPlot,'all') || strcmp(toPlot,'Orbits')
-%     plotOrbit(stateArr);
+    %     plotOrbit(stateArr);
 end
 
 end
@@ -49,6 +49,16 @@ centerPWM = actuationCmds.CenterCube_PWM_cmds;
 motorReel = actuationCmds.MotorReelRates;
 burnCmds = actuationCmds.BurnCmd;
 acsSafe = actuationCmds.ACSSafeMode;
+
+figure; hold on; box on;
+plot(centerPWM);
+legend('PWM x','PWM y','PWM z');
+title('centerPWM Commands');
+
+figure; hold on; box on;
+plot(burnCmds);
+legend('Wire 1','Wire 2','Wire 3','Wire 4');
+title('Burn Wire Commands');
 
 end
 
