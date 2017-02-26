@@ -23,4 +23,4 @@ sim('Main');
 % display simulation time
 disp(['Simulation ran in ',num2str(toc,'%.2f'),' seconds']);
 % animcations and plotting
-plotRun(stateArr,actuationCmds,'all');
+plotRun;
