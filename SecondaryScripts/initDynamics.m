@@ -1,4 +1,5 @@
-% Initialize dyanmics parameters and variabels for use in all dynamic configurable systems
+% Initialize dyanmics parameters and variabels for use in
+%all dynamic configurable systems
 
 %% Dynamics by hand
 
@@ -32,4 +33,7 @@ s_spring2L = 0;
 s_spring2ks = 1;
 s_spring2kd = .1;
 
-%%
+%% Undeployed mode
+undeploy_Dim = centerDim + side1Dim + side2Dim;
+undeploy_Mass = centerMass + side1Mass + side2Mass;
+
