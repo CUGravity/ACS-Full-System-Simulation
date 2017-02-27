@@ -3,8 +3,6 @@
 close all;
 clear;
 clc;
-% start timer
-tic;
 
 % add 2ndary scripts and initialize parameters
 addpath('SecondaryScripts');
@@ -16,11 +14,13 @@ initKalmanFilter;
 
 % Which configuration to run
 configFirst;
-t_end = OpTimes(end)+0;
+t_end = OpTimes(end)+100;
+% start timer
+tic;
 % Run simulation
 sim('Main');
-
 % display simulation time
 disp(['Simulation ran in ',num2str(toc,'%.2f'),' seconds']);
-% animcations and plotting
+
+% animations and plotting
 plotRun;

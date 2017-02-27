@@ -1,7 +1,6 @@
 % plotRun(stateArr,actuationCmds,toPlot)
 %
 close all;
-
 %% state and estimated state
 c1 = stateArr.Cube1State;
 c2 = stateArr.Cube2State;
