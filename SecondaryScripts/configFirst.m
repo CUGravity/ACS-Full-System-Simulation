@@ -1,5 +1,6 @@
 % tether length
 % state 1 is the main central satellite
+start_time = 0;
 orbitalState_i = [6.7e6 0 0 , 0 7.6e3 0];
 % in meters, m/s, n/a, rad/s
 state1_i = [ 0 0 0 , 0 0 0 , 0 0 0 1 , 0.1 0 0 ]';
@@ -17,4 +18,3 @@ OpModes = [0 0 0];
 OpTimes = [0 1 2];
 
 SeperationTime = 15;
-SolarDeployTime = 10;
