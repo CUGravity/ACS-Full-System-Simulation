@@ -16,7 +16,7 @@ initKalmanFilter;
 
 % Which configuration to run
 configFirst;
-t_end = OpTimes(end)+10;
+t_end = OpTimes(end)+0;
 % Run simulation
 sim('Main');
 
