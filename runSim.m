@@ -14,7 +14,8 @@ initKalmanFilter;
 
 % Which configuration to run
 configFirst;
-t_end = OpTimes(end)+100;
+% t_end = OpTimes(end)+0;
+t_end = 10;
 % start timer
 tic;
 % Run simulation
