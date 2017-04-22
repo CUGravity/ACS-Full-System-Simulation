@@ -38,6 +38,31 @@ R_k = zeros(13,13);
 
 R = R_k;
 
+a = [3; -2; 1]/norm([3; -2; 1]);
+phi = 0.156;
+q0 = [a*sin(phi/2); cos(phi/2)];
+w0 = a*0.001;
+
+x0 = [0;
+    0;
+    6978000;
+    0;
+    7558;
+    0;
+    0;
+    0;
+    0;
+    w0;
+    q0];
+
+JD = 2457857.916667;
+JD_GPS0 = 2457857.5;
+
+% Number of leap seconds since start of GPS (current as of 2014)
+UTC_leap_seconds_wrt_GPS = 0;
+
+% GPS time at sim start [s]
+sim_start_time = (JD - JD_GPS0) * 24*60*60 - UTC_leap_seconds_wrt_GPS;
 
 
 
