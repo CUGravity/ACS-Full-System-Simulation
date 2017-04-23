@@ -1,4 +1,4 @@
-% refresh enviroment
+ % refresh enviroment
 % bdclose('all');
 close all;
 clear;

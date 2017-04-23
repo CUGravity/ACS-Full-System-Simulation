@@ -5,8 +5,8 @@
 mewE = 3.986004418e14; % m^3/s/s
 
 %% Controller
-kp = 0.01;
-kd = 0.01;
+kp = 1;
+kd = 1;
 
 %% Tether
 teth_k = 10; % Effective spring constant

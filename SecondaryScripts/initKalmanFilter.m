@@ -43,11 +43,14 @@ phi = 0.156;
 q0 = [a*sin(phi/2); cos(phi/2)];
 w0 = a*0.001;
 
+GM = 3.986e14;
+v0 = sqrt(GM/6978000);
+
 x0 = [0;
     0;
     6978000;
     0;
-    7558;
+    v0;
     0;
     0;
     0;
@@ -57,6 +60,8 @@ x0 = [0;
 
 JD = 2457857.916667;
 JD_GPS0 = 2457857.5;
+
+orbit_length = 2*pi*(6978000)/v0;
 
 % Number of leap seconds since start of GPS (current as of 2014)
 UTC_leap_seconds_wrt_GPS = 0;
