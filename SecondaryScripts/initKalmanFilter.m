@@ -39,9 +39,14 @@ R_k = zeros(13,13);
 R = R_k;
 
 a = [3; -2; 1]/norm([3; -2; 1]);
+
+% a = [1; 0; 0];
+% Rate = 0; % 0.1
+Rate = 0.1;
+
 phi = 0.156;
 q0 = [a*sin(phi/2); cos(phi/2)];
-w0 = a*0.001;
+w0 = a*Rate;
 
 GM = 3.986e14;
 v0 = sqrt(GM/6978000);
