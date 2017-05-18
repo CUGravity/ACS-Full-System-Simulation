@@ -18,10 +18,10 @@ teth_length = 1;
 teth_density = 1;
 spring1L = 10*eps;
 spring1ks = 10;
-spring1kd = .1;
+spring1kd = 0.1;
 spring2L = 0;
 spring2ks = 10;
-spring2kd = .1;
+spring2kd = 0.1;
 
 % Stabilizing tether
 s_teth_radius = .005;     
@@ -37,5 +37,5 @@ s_spring2kd = .1;
 % Kane damper
 kane_radius = (10/100)/2;
 kane_height = (5/100)/4;
-kane_d = 50;
+kane_d = 0.1;
 kane_density = 1000;
