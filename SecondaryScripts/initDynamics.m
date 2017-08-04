@@ -1,7 +1,6 @@
 % Initialize dyanmics parameters and variabels for use in
 %all dynamic configurable systems
 
-%% Dynamics by hand
 
 %% Single Link Simscape Model
 % Cubesats
@@ -39,3 +38,14 @@ kane_radius = (10/100)/2;
 kane_height = (5/100)/4;
 kane_d = 0.1;
 kane_density = 1000;
+
+% Earth properties
+m_earth = 5.972e24;
+r_earth = 6378.1e3;
+
+Earth.Px = 0;
+Earth.Py = 0;
+Earth.Pz = 0;
+Earth.Vx = 0;
+Earth.Vy = 0;
+Earth.Vz = 0;
