@@ -9,8 +9,7 @@ kp = 1;
 kd = 0.5;
 
 %% Tether
-teth_k = 10; % Effective spring constant
-teth_lo = 30; 
+% Moved to initDynamics with other tether property initializations
 
 %% Connected full system
 zl = 3*0.01; %2U
