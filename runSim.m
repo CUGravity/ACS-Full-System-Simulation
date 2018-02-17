@@ -20,9 +20,12 @@ t_end = 1;
 tic;
 % Run simulation
 sim('Main');
-% display simulation time
-disp(['Simulation ran in ',num2str(toc,'%.2f'),' seconds']);
-disp(['Simulation ran ',num2str(toc/t_end,'%.1f'),' times slower than real-time']);
 
-% animations and plotting
+% Display simulation time
+disp(['Simulation ran in ',num2str(toc-10,'%.2f'),' seconds']);
+% Takes ~10 seconds from clicking "Run" until start of sim
+disp(['Simulation ran ',num2str((toc-10)/t_end,'%.1f'),...
+    ' times slower than real-time']);
+
+% Animations and plotting
 % plotRun;

@@ -1,3 +1,15 @@
+%{
+Author:     Aaron Sandoval
+Created:    2017-11
+Updated:    2018-02-17
+
+Description:
+IN DEVELOPMENT. CURRENTLY NON-FUNCTIONAL. NEEDS TO DEAL WITH SETPARAM()
+BREAKING LIBRARY LINKS.
+Manually changes the tether mechanical properties using setparam().
+Calculates new link properties with updated length. 
+%}
+
 function updateTetherProps(muxIn)
 %% Need to tell MATLAB to exclude these commands from code building
 coder.extrinsic('set_param');
@@ -41,10 +53,12 @@ link_c = kd; %Discretized axial damping TBD
     teleStr = cell2mat(innerBlocks(teleInd));
     teleHand = getSimulinkBlockHandle(strcat(linkStr,'/',teleStr));
 %     set_param(teleHand,'PzSpringStiffness', num2str(link_k));
+% Above line actually does the property updates. Not yet working.
 % end
 
 if(deltaL ~= 0)
-    fprintf('\ndeltaL = %.2f\tL = %.2t', deltaL, L);
+    fprintf('\nL = %.2f\tRand: %.3f',L,rand());
+    %rand() for visibility of repeated execution of this function
     if(length(muxIn) > 5)
         fprintf('Time = %.7f', time);
     end
