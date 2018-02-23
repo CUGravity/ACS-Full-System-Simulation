@@ -28,7 +28,7 @@ if(length(muxIn) > 5)
     time = muxIn(6);
 end
 
-%% Calculate new tether link properties 
+%% Calculate new tether link properties hello
 % L_total = L + deltaL;
 link_k = AE / (L / numLinks); %Lumped
 % stiffness of one link in the tether. Changes as tether unreels.
