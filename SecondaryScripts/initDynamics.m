@@ -4,12 +4,21 @@
 
 % Simscape Model
 %% Cubesats Solid Blocks
-centerDim = [ 10 10 20 ]/100;
-centerMass = 4*(2/3);
-side1Dim = [ 10 10 5 ]/100;
-side1Mass = 4*(0.5/3);
-side2Dim = [ 10 10 5 ]/100;
-side2Mass = 4*(0.5/3);
+% centerDim = [ 10 10 20 ]/100;
+% centerMass = 4*(2/3);
+% side1Dim = [ 10 10 5 ]/100;
+% side1Mass = 4*(0.5/3);
+% side2Dim = [ 10 10 5 ]/100;
+% side2Mass = 4*(0.5/3);
+
+%% Cubesats CAD Blocks
+%From CAD model as of beginning of Spring 2018
+centerDim = [ 10.4 10.4 23.1 ]/100;
+centerMass = 2.7719;
+side1Dim = [ 10 10 6.124 ]/100;
+side1Mass = 0.3283;
+side2Dim = [ 10 10 6.124 ]/100;
+side2Mass = 0.3283;
 
 %% Tether Geometry
 teth_radius = .005; %Eric Grohn, 2017 says 0.00025 m
@@ -17,7 +26,7 @@ teth_radius_actual = .00025;
 teth_area = pi*teth_radius_actual^2;
 teth_length = 1;
 teth_length_dyn = [0 teth_length]; %Debugging, tether length timeseries
-teth_numLinks = 6; %Change when changing number of links in tether block
+teth_numLinks = 3; %Change when changing number of links in tether block
 
 %% Tether Mechanical Properties
 teth_density = 1; % Arbitrary?
