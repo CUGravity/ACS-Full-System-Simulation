@@ -1,9 +1,5 @@
 %%% Init file for Orbital Propagator
 
-close all
-clear
-clc
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% READ ME FOR SATELLITE INPUT (inclination and altitude variations)
 % n = case #           path
