@@ -11,6 +11,7 @@ initACS;
 initDynamics;
 initSensors;
 initKalmanFilter;
+initOrbit;
 
 % Which configuration to run
 configFirst;
