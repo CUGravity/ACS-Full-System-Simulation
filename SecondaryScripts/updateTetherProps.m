@@ -22,7 +22,7 @@ coder.extrinsic('strcat');
 numLinks = muxIn(1);
 L = muxIn(2);
 deltaL = muxIn(3);
-AE = muxIn(4); % Specific stiffness in k=A*E/L
+AE = muxIn(4); % Specific stiffness per unit length in k=A*E/L
 kd = muxIn(5); % Specific damping
 if(length(muxIn) > 5)
     time = muxIn(6);

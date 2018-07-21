@@ -4,85 +4,37 @@
 %% Constants
 mewE = 3.986004418e14; % m^3/s/s
 
-%% Controller
-kp = 1;
-kd = 0.5;
+%% Attitude Control Gains
+% maxTorqueMagnitude = 2.5e-5; % Estimate of max torque attainable, used in
+% old saturation model
+kp = 1;% OBSOLETE
+kd = 0.5;% OBSOLETE
+
+% Detumble Controller
+% kp_UD_detumble = 1e-4; % Un-deployed detumble controller
+kd_UD_detumble = 6e-3; % Un-deployed detumble controller
+
+% Slew Controller
+epsilon_UD_slew = .01;
+kp_UD_slew = epsilon_UD_slew^2*.01; % Un-deployed detumble controller POSSIBLY = 0
+kd_UD_slew = epsilon_UD_slew*.3; % Un-deployed detumble controller
+spinAxis_B = [1 0 0]; % Intended spin axis is always in body x direction
+% spinAxis_B = [0.7806 0.6250 0]'; % Max principal axis
+
+% UD Spin-up Controller
+epsilon_UD_spinUp = .01;
+kp_UD_spinUp = epsilon_UD_spinUp^2*.05; % Un-deployed detumble controller POSSIBLY = 0
+kd_UD_spinUp = epsilon_UD_spinUp*0.025; % Un-deployed detumble controller
+spinAxis_B = [1 0 0]; % Intended spin axis is always in body x direction
 
 %% Tether
 % Moved to initDynamics with other tether property initializations
 
-%% Connected full system
-zl = 3*0.01; %2U
-xyl = 1*0.01; %2U
-m = 4; % in kg
-I_undeployed=[m*(zl^2+xyl^2)/12 0 0 ; ...
-        0 m*(zl^2+xyl^2)/12 0 ; ...
-        0 0 m*(2*xyl^2)/12 ] + 1e-6*(rand(3)-0.5);
-I_undeployed = inv(I_undeployed);
-
-%% Connected full system - SOLAR PANEL DEPLOYED
-zl = 3*0.01; %2U
-xyl = 1*0.01; %2U
-m = 4;
-I_solar=[m*(zl^2+xyl^2)/12 0 0 ; ...
-        0 m*(zl^2+xyl^2)/12 0 ; ...
-        0 0 m*(2*xyl^2)/12 ] + 1e-6*(rand(3)-0.5);
-I_solar = I_solar.*[1.5 0 0 ; 0 1.5 0 ; 0 0 0.9 ];
-I_solar_inv = inv(I_solar);
-
-%% Sat2 - Middle Central Satellite
-zl = 2*0.01; %2U
-xyl = 1*0.01; %2U
-m = 4*2/3;
-I_2=[m*(zl^2+xyl^2)/12 0 0 ; ...
-        0 m*(zl^2+xyl^2)/12 0 ; ...
-        0 0 m*(2*xyl^2)/12 ] + 1e-6*(rand(3)-0.5);
-I_2_inv = inv(I_2);
-
-sat2.nx = 100;
-sat2.ny = 100;
-sat2.nz = 100;
-sat2.Ax = 0.02;
-sat2.Ay = 0.02;
-sat2.Az = 0.01;
-
-%% Sat1 - Side Satellite
-zl = 0.5*0.01; %2U
-xyl = 1*0.01; %2U
-m = 4*1/6;
-I_1=[m*(zl^2+xyl^2)/12 0 0 ; ...
-        0 m*(zl^2+xyl^2)/12 0 ; ...
-        0 0 m*(2*xyl^2)/12 ] + 1e-6*(rand(3)-0.5);
-I_1_inv = inv(I_1);
-
-sat1.nx = 100;
-sat1.ny = 100;
-sat1.nz = 100;
-sat1.Ax = 0.005;
-sat1.Ay = 0.005;
-sat1.Az = 0.01;
-
-%% Sat3 - Side Satellite
-zl = 0.5*0.01; %2U
-xyl = 1*0.01; %2U
-m = 4*1/6;
-I_3=[m*(zl^2+xyl^2)/12 0 0 ; ...
-        0 m*(zl^2+xyl^2)/12 0 ; ...
-        0 0 m*(2*xyl^2)/12 ] + 1e-6*(rand(3)-0.5);
-I_3_inv = inv(I_3);
-
-sat3.nx = 100;
-sat3.ny = 100;
-sat3.nz = 100;
-sat3.Ax = 0.005;
-sat3.Ay = 0.005;
-sat3.Az = 0.01;
-
 %% PLACEHOLDERS
-counter = 0;
-km = kp;
-A = sat1.Ax;
-n = sat1.nx;
+counter = 0; % Purpose unknown
+% km = kp;
+% A = sat1.Ax;
+% n = sat1.nx;
 
 
 

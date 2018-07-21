@@ -27,7 +27,7 @@ for i = 1:3
     
     figure; hold on; box on;
     subplot(2,1,1);
-    plot(c(i).q_BN); hold on;
+    plot(c(i).q1_BN); hold on;
     plot(e(i).q_BN_est,'--');
     legend('q1','q2','q3','q4','q1 est','q2 est','q3 est','q4 est');
     title(['c',num2str(i),': Quaternions over time']);
