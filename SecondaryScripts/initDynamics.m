@@ -1,15 +1,14 @@
-% Initialize dyanmics parameters and variabels for use in
-%all dynamic configurable systems
+%% File Description
+%{
+Team:       CU Artificial Gravity CubeSat
+Updated:    2018-07
+Update by:  Aaron Sandoval
 
-
-% Simscape Model
-%% Cubesats Solid Blocks
-% centerDim = [ 10 10 20 ]/100;
-% centerMass = 4*(2/3);
-% side1Dim = [ 10 10 5 ]/100;
-% side1Mass = 4*(0.5/3);
-% side2Dim = [ 10 10 5 ]/100;
-% side2Mass = 4*(0.5/3);
+Description:
+Initializes variables involved in the dynamics blocks, including
+dimensions, mechanical properties, mass properties, and torque coil
+properties
+%}
 
 %% Cubesats CAD Blocks
 %From CAD model as of beginning of Spring 2018
@@ -21,28 +20,31 @@ side2Dim = [ 10 10 6.124 ]/100;
 side2Mass = side1Mass;
 
 %% Tether Geometry
-teth_radius = .005; % For graphics visibility
-teth_radius_actual = .00025;%Eric Grohn, 2017 says 0.00025 m
+teth_radius = .005; % Usd only for graphics visibility
+teth_radius_actual = .00025;%Real tether radius, Eric Grohn, 2017
 teth_area = pi*teth_radius_actual^2;
-teth_length = 1;
-teth_length_dyn = [0 teth_length]; %Debugging, tether length timeseries
+teth_length = 1; % Set freely
 teth_numLinks = 3; %Change when changing number of links in tether block
 
 %% Tether Mechanical Properties
-teth_density = 1; % Arbitrary?
+teth_density = 1000; % A vague guess
 teth_modulus = 172e9; %[N/m^2] Dyneema: Axial modulus of elasticity 
-teth_damping = 0; % Assume that majority of damping occurs in linear damper
+teth_damping = 0; % TBD, damping in axial tether mode, get from manufacturer?
 teth_k = teth_area*teth_modulus/teth_length;
-    % Effective stiffness of full tether, formerly set to arbitrary 10 N/m
+    % Effective axial stiffness of full tether
 teth_link_k = teth_k*teth_numLinks; % Discretized stiffness of link joints
 teth_lo = 30; %Purpose unknown, came from initACS 
 
 %% Linear damper
 linearDamper_k = 500;
 linearDamper_c = 50;
+% 2018-07: Lumped axial stiffness of tether in with linear damper.
+% teth_series_k is the combined stiffness. Joints between tether links are
+% modeled as infinitely stiff to improve solution speed.
 teth_series_k = (1/linearDamper_k + 1/teth_k)^(-1);
 
 %% Single Link Model Tether Parameters
+%%%%%%%%%%%%%%%%%%%%%%%%% OBSOLETE DYNAMICS MODEL %%%%%%%%%%%%%%%%%%%%%%%%
 % spring1L = 10*eps;
 % spring1ks = 10; % [N/m] Arbitrary, much slower than real, makes fast sims
 % spring1kd = 1; % [Ns/m] Arbitrary, much slower than real, makes fast sims
@@ -119,7 +121,7 @@ sat2WireArea = pi*sat2WireRadius.^2;
 sat2WireResistivity = 1.724e-8*[1; 1; 1]; % Copper resistivity
 sat2Resistance = sat2WireLength.*sat2WireResistivity./sat2WireArea;
 
-%% Sat1 - Side Satellite
+%% Sat1 - EndSat -Z
 I_1_mom_ROW = [0.000456 0.000469 0.000719]; %[I_xx, I_yy, I_zz]
 I_1_prod_ROW = [0 0 0]; %[I_xy, I_xz, I_yz]
 I_1_prod = [0 I_1_prod_ROW(1) I_1_prod_ROW(2); 0 0 I_1_prod_ROW(3); 0 0 0];
@@ -129,7 +131,7 @@ invI_1_B = inv(I_1_B);
 mass_1 = 0.3283; % EndSat1 mass
 COM_1 = 1e-3*[5.1 2.6 11.4]; % Center of mass offset from geometric center
 
-%% Sat3 - Side Satellite
+%% Sat3 - EndSat +Z
 I_3_mom_ROW = I_1_mom_ROW;
 I_3_prod_ROW = I_1_prod_ROW;
 I_3_prod = I_1_prod;

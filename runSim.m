@@ -1,3 +1,16 @@
+%% File Description
+%{
+Team:       CU Artificial Gravity CubeSat
+Updated:    2018-07
+Update by:  Aaron Sandoval
+
+Description:
+Root script to run CUAG flight computer and dynamics simulation. Calls
+several secondary scripts to initialize variables and runs Main.slx
+Simulink model. Optionally, plots attitude and estimation results after
+simulation is complete.
+%}
+%% Script
 % refresh enviroment
 % bdclose('all');
 close all;
@@ -10,30 +23,25 @@ addpath('SecondaryScripts');
 %% Initialize Workspace Variables
 initSimulink;
 [r_N, v_N, B_N, UTC] = initOrbit(2); % Change arg to select orbit
-initACS;
 initDynamics;
+initACS;
 initSensors;
 initKalmanFilter;
 
-% Which configuration to run
+% Initial conditions
 configFirst;
-% t_end = OpTimes(end)+0;
 t_end = 10;
+
+%% Run Simulation
 % start timer
 tic;
-% Run simulation
 sim('Main');
 
-% Display simulation time
-disp(['Simulation ran in ',num2str(toc-10,'%.2f'),' seconds']);
+%% Display Results
+disp(['Simulation ran in ',num2str(toc,'%.2f'),' seconds']);
 % Takes ~10 seconds from clicking "Run" until start of sim
-disp(['Simulation ran ',num2str((toc-10)/t_end,'%.1f'),...
+disp(['Simulation ran ',num2str((toc)/t_end,'%.1f'),...
     ' times slower than real-time']);
 
 % Animations and plotting
 % plotRun;
-
-% Compute all orbit data
-% for i = 10:22
-%     initOrbit(i);
-% end

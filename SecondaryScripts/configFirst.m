@@ -1,37 +1,66 @@
-% tether length
-% state 1 is the main central satellite
-start_time = 0;
-% orbitalState_i = [6.786e6 0 0 , 0 7.67e3 0];
-% in meters, m/s, n/a, rad/s
+%% File Description
+%{
+Team:       CU Artificial Gravity CubeSat
+Updated:    2018-07
+Update by:  Aaron Sandoval
 
+Description:
+Sets initial conditions for attitude states and commands. Not yet capable
+of calculating arbitrary deployed-mode IC sets from a given MidSat quat.
+All terms in ECI coordinates.
+%}
+start_time = 0;
 
 %% Attitude ICs
-w0_N = 1e-1*[1 0 0];
-% w0_N = 1*1e-2*[4.825    -0.421    0.321];
-% q4_0 = [0.4297    -0.3163    0.2303    0.8667]';
-% q4_0 = [.0 0 -.005+sqrt(2)/2 sqrt(2)/2+.005]';
-% q4_0 = [0.1 0.2 -0.15 .9]';
-% q4_0 = [sqrt(2)/2 .02 .02 sqrt(2)/2-.02]';
+%{
+Sets initials state targets for all satellites. Be careful with changing
+values using deployed dynamics. Simulation is currently only setup to
+handle
+q4_0 = [0 0 0 1]
+w0_N in [1 0 0] direction
+Undeployed dynamics can handle any ICs.
+%}
+w0_N = 1e-2*[2 0 0];
 q4_0 = [0 0 0 1]';
 
 %% Attitude Commands
-% q4_cmd_init: Initial attitude command. If omega_cmd_N == 0, then this is
+%{
+This section defines the commanded attitude. The switch case must be
+manually changed depending on the ACS state. This must be automated to
+change with the state machine later.
+
+q4_cmd_init: Initial attitude command. If omega_cmd_N == 0, then this is
 % a static attitude regulation command. Else, q4_cmd is updated with omega.
-% q4_cmd_init = [sqrt(2)/2 0 0 sqrt(2)/2]';
-q4_cmd_init = [0 0 0 1]';
-% q4_cmd_init = [4 -3 4 .2]';
-% q4_cmd_init = [1 -3 -4 .2]';
-omega_cmd_N = 1*[1 0 0]';
+Case Control:
+1:  Static attitude commands (detumble mode, other att. regulation)
+2:  Non-zero spin command (pointing, spin-up)
+%}
+att_cmd_case = 1;
+switch(att_cmd_case)
+    case 1 % Attitude regulation, omega_cmd = 0
+        q4_cmd_init = [0 0 0 1]';
+        omega_cmd_N = [0 0 0]';
+    case 2 % Non-zero commanded spin
+%         q_cmd is dependent on and must be consistent with spinAxis_B and
+%         omega_cmd_N. This case defines an inital q_cmd such that the spin
+%         axis is aligned in the commanded direction
+        omega_cmd_N = 1e-1*[1 1 -.6]'; % MODIFY DEPENDING ON ACS STATE
+        q4_cmd_init = dcm2quat(SingleVectorAlignDCM(...
+            omega_cmd_N, spinAxis_B.').').';
+        q4_cmd_init = [q4_cmd_init(2:4); q4_cmd_init(1)];
+end
 Q_cmd_N_B = quat2dcm([q4_cmd_init(4); q4_cmd_init(1:3)]')';
 
 %% Simulink IC Variables
 % Units: meters, m/s, UNITLESS, rad/s
 state1_i = [ 0 0 0 , 0 0 0 , q4_0', w0_N]'; % MidSat, NOT ENDSAT (violates convention)
+q4_0_Cube2 = [0.5 -.5 -.5 -.5]'; % Only compatible with deployed q4_0=[0 0 0 1]
+q4_0_Cube3 = [0.5 -.5 0.5 0.5]'; % Only compatible with deployed q4_0=[0 0 0 1]
 state2_i = [ 0 0 (teth_length+side1Dim(1)/2+centerDim(3)/2+10*eps) , 0 -.1 0 , ...
-    0.5 -.5 -.5 -.5 , w0_N ]';
+    q4_0_Cube2' , w0_N ]';
 state2_i(4:6) = cross(state2_i(11:13), state2_i(1:3));
 state3_i = [ 0 0 -(teth_length+side1Dim(1)/2+centerDim(3)/2+10*eps), 0 .1 0 , ...
-    0.5 -.5 0.5 0.5 , w0_N ]';
+    q4_0_Cube3' , w0_N ]';
 state3_i(4:6) = cross(state3_i(11:13), state3_i(1:3));
 
 state1_i_rotation = quat2dcm([state1_i(10),state1_i(7:9)']);
@@ -42,4 +71,4 @@ state3_i_rotation = quat2dcm([state3_i(10),state3_i(7:9)']);
 OpModes = [0 0 0];
 OpTimes = [0 1 2];
 
-SeperationTime = 15;
+SeperationTime = 30000; % Controls when FC changes from UD to Dep algorithms
