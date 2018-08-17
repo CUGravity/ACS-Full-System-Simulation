@@ -1,11 +1,10 @@
 %init torque model
 
 %positions
-[r_timeseries,v_timeseries] = initOrbit();
-B_N = initMagneticField(r_timeseries);
-r1 = r_timeseries(:,1);
-r2 = r_timeseries(:,2);
-r3 = r_timeseries(:,3);
+[r_timeseries,v_timeseries, B_N, UTC] = initOrbit(2);
+r1 = r_timeseries.data(:,1);
+r2 = r_timeseries.data(:,2);
+r3 = r_timeseries.data(:,3);
 
 %GG parameters
 G = 6.67*10^-11;
