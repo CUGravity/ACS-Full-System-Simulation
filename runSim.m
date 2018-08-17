@@ -27,6 +27,7 @@ initDynamics;
 initACS;
 initSensors;
 initKalmanFilter;
+initattitude;
 
 % Initial conditions
 configFirst;
